@@ -1,0 +1,65 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}Post{% endblock %}
+
+      {% block contents %}
+      <!-- Bootstrapのグリッドシステム -->
+      <main class="flex-shrink-0">
+      <div class="container">
+        <!-- 行を配置 -->
+        <div class="row">
+          <!-- 列の左右に余白offset-2を入れる -->
+          <div class="col offset-2">
+            <!-- ファイルをアップロードする場合は
+                 enctype="multipart/form-data"が必要 -->
+            <form method="POST"
+                  enctype="multipart/form-data" >
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label">カテゴリ</label>
+                <div>{{ form.category }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">タイトル</th>
+                <div>{{ form.title }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">主催</lable>
+                <div>{{ form.organizer }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">概要</label>
+                <div>{{ form.summary }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">詳細</label>
+                <div>{{ form.description }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">受講推奨職種</label>
+                <div>{{ form.jobinfo }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">サムネイル</label>
+                <div>{{ form.thumbnail }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">画像1</label>
+                <div>{{ form.image1 }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">画像2</label>
+                <div>{{ form.image2 }}</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">外部リンク先</label>
+                <div>{{ form.link }}</div>
+              </div>
+              <button type="submit">投稿する</button>
+            </form>        
+          </dv>
+        </dv>
+      </dv>
+      </main>
+      {% endblock %}

@@ -1,0 +1,63 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}職業別学習情報 {{ object.line }}系 {{ object.title }}{% endblock %}
+
+      {% block contents %}
+      <!-- Begin page content -->
+        <main class="flex-shrink-0">
+          <div class="container">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/m">職業別学習情報</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="/line/{{ object.line.id }}">{{ object.line }}</a> > {{ object.title }}</li>
+              </ol>
+            </nav>
+            <h1 class="mt-5">{{ object.title }}</h1>
+            <p>作成日 {{ object.posted_at }}</p>
+            <div class="alert alert-primary" role="alert">業界・分野・区分</div>
+              <p>{{ object.line }}</p>
+            <div class="alert alert-primary" role="alert">概要</div>
+              <p>{{ object.summary }}</p>
+            <div class="alert alert-primary" role="alert">詳細</div>
+              <p>{{ object.description }}</p>
+            <div class="alert alert-primary" role="alert">学習ロードマップ</div>
+              <p><img src="{{ object.image1.url }}" class="img-fluid"></img></p>
+            <div class="alert alert-primary" role="alert">学習項目</div>
+            <div class="wrap card-columns">
+              {% for category in object.relation.all %}
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ category.title }}</h5>
+                  <p class="card-text">{{ category.summary }}</p>
+                  <a href="/cat/{{ category.id }}" class="btn btn-primary">移動する</a>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% if object.link %}
+            <div class="alert alert-primary" role="alert">関連情報(外部)</div>
+              <p><a href="{{ object.link }}" target="_blank">{{ object.link }}</a></p>
+            {% endif %}
+            {% if object.relationjob.all %}
+            <div class="alert alert-primary" role="alert">キャリアプラン</div>
+            <div class="wrap card-columns">
+              {% for JobPost in object.relationjob.all %}
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ JobPost.title }}</h5>
+                  <p class="card-text">{{ JobPost.summary }}</p>
+                  <a href="/model_detail/{{ JobPost.id }}" class="btn btn-primary">移動する</a>
+                </div>
+              </div>
+              {% endfor %}
+            {% endif %}
+            <!-- 投稿がログイン中のユーザーのものであれば、削除ボタンを表示する -->
+            {% if request.user == object.user %}
+            <a href="{% url 'edu:model_delete' object.pk %}" 
+                    class "btn btn-primary my-2">この情報を削除する</a>
+            {% endif %}
+
+          </div>    
+        </main>
+      {% endblock %}

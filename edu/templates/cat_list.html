@@ -1,0 +1,29 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}学習別カテゴリ一覧{% endblock %}
+
+    {% block contents %}
+      
+    <section class="py-5 text-center container">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">学習情報DB</a></li>
+              </ol>
+        </nav>
+        <div class="row py-lg-5">
+        <div class="wrap card-columns">
+            {% for record in object_list %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ record.category.title }}</h5>
+                    <p class="card-text">{{ record.category.summary }}</p>
+                    <a href="/cat/{{ record.category.id }}" class="btn btn-primary">移動する</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </section>
+        
+    {% endblock %}

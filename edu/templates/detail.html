@@ -1,0 +1,59 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}カテゴリ別学習情報 {{ object.category }}系 {{ object.title }}{% endblock %}
+
+      {% block contents %}
+      <!-- Begin page content -->
+        <main class="flex-shrink-0">
+          <div class="container">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">学習情報DB</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="/cat/{{ object.category.id }}">{{ object.category }}</a> > {{ object.title }}</li>
+              </ol>
+            </nav>
+            <h1 class="mt-5">{{ object.title }}</h1>
+            <p>作成日 {{ object.posted_at }}</p>
+            <div class="alert alert-primary" role="alert">学習カテゴリ</div>
+              <p>{{ object.category }}</p>
+            <div class="alert alert-primary" role="alert">概要</div>
+              <p>{{ object.summary }}</p>
+            <div class="alert alert-primary" role="alert">詳細</div>
+              <p>{{ object.description }}</p>
+            <!-- １枚目の画像がアップロードされていれば表示 -->
+            {% if object.image1 %}
+            <p><img src="{{ object.image1.url }}" class="img-fluid"></img></p>
+            {% endif %} 
+            <!-- 2枚目の画像がアップロードされていれば表示 -->
+            {% if object.image2 %}
+                <p><img src="{{ object.image2.url }}" class="img-fluid"></img></p>
+            {% endif %} 
+            {% if object.link %}
+            <div class="alert alert-primary" role="alert">受講申込み先</div>
+              <p><a href="{{ object.link }}" target="_blank">{{ object.link }}</a></p>
+            {% endif %} 
+            {% if object.jobinfo.all %}
+            <div class="alert alert-primary" role="alert">受講推奨職種</div>
+            <div class="wrap card-columns">
+              {% for jobpost in object.jobinfo.all %}
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ jobpost.title }}</h5>
+                  <p class="card-text">{{ jobpost.summary }}</p>
+                  <a href="/model_detail/{{ jobpost.id }}" class="btn btn-primary">移動する</a>
+                </div>
+              </div>
+              {% endfor %}
+            {% endif %}
+
+            <!-- 投稿がログイン中のユーザーのものであれば、削除ボタンを表示する -->
+            {% if request.user == object.user %}
+            <a href="{% url 'edu:post_delete' object.pk %}" 
+                    class "btn btn-primary my-2">この情報を削除する</a>
+            {% endif %}
+
+            </div>
+          </div>    
+        </main>
+      {% endblock %}

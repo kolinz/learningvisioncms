@@ -1,0 +1,148 @@
+<!-- 静的ファイルのURLを生成するstaticタグをロードする -->
+{% load static %}
+<!doctype html>
+<!-- 言語指定をenからjaに変更 -->
+<html lang="ja" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <!-- ヘッダー情報のタイトルを個別に設定できるようにする -->
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- <link rel="canonical" href="https://"～>の記述を削除 -->
+    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSSを読み込むコードをBootstrapからコピー -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+          crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- ページのヘッダー -->
+    <header>
+      <!-- ナビゲーションバーのヘッダー -->
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <!-- ヘッダーのタイトルと本文-->
+              <h4 class="text-white">あなたにあった学習情報を見つけよう！</h4>
+              <p class="text-muted">
+                仕事別に役立つリカレント教育・リスキリング教育講座情報を集めました。サインアップすることで、集客したい講座情報を登録し、表示することができます。
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">認証・マイページ</h4>
+              <ul class="list-unstyled">
+                <!-- ナビゲーションメニュー -->
+                {% if user.is_authenticated  %}
+                <!-- ログインしているときのナビゲーションメニュー -->
+                  <li><a href="{% url 'edu:mypage_edu' %}"
+                         class="text-white">学習情報のマイページ</a></li>
+                  <li><a href="{% url 'edu:mypage_job' %}"
+                         class="text-white">職種別学習情報のマイページ</a></li>
+                  <li><a href="{% url 'accounts:logout' %}"
+                         class="text-white">ログアウト</a></li>
+                  <li><a href="mailto:admin@example.com"
+                         class="text-white">Email me</a></li>
+                　<li><a href="/admin"
+                         class="text-white">管理画面(権限割当者のみ)</a></li>
+                {% else %}
+                <!-- ログイン状態ではないときのナビゲーションメニュー -->>
+                  <li><a href="{% url 'accounts:signup' %}"
+                         class="text-white">サインアップ</a></li>
+                  <li><a href="{% url 'accounts:login' %}"
+                         class="text-white">ログイン</a></li>
+                  <li><a href="mailto:admin@example.com"
+                         class="text-white">Email me</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ナビゲーションバー -->
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+          <!-- トップページへのリンク -->
+          <a href="{% url 'edu:index' %}"
+             class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="20" height="20" fill="none" stroke="currentColor"
+                 stroke-linecap="round" stroke-linejoin="round"
+                 stroke-width="2" aria-hidden="true" class="me-2"
+                 viewBox="0 0 24 24">
+                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                 <circle cx="12" cy="13" r="4"/>
+            </svg>
+            <!-- リンクテキスト -->
+            <strong>Learning Vision(β)</strong>
+          </a>
+          <!-- トグルボタン -->
+          <button class="navbar-toggler" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+                  aria-controls="navbarHeader" aria-expanded="false"
+                  aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <!-- メインコンテンツ -->
+    <main>
+      <!-- メインコンテンツの本体部分は各ページのテンプレートで埋め込む -->
+      {% block contents %}{% endblock %}
+    </main>
+
+    <!-- フッター -->
+    <footer class="text-muted py-5">
+      <div class="container">
+        <p class="float-end mb-1">
+          <a href="/">Back to top</a>
+        </p>
+        <!-- フッターのテキストを任意のものに書き換え-->
+        <p class="mb-1">Learning Vision(β) is &copy; Bootstrap, but please post a lot!</p>
+      </div>
+      <!-- ヘルプチャットボット IBM Watson Assistant -->
+        <script>
+            window.watsonAssistantChatOptions = {
+                integrationID: "xxxxxxxxxxxxx", // The ID of this integration.
+                region: "us-south", // The region your integration is hosted in.
+                serviceInstanceID: "xxxxxxxxxxxxx", // The ID of your service instance.
+                onLoad: function(instance) { instance.render(); }};
+
+                setTimeout(function(){
+                        const t=document.createElement('script');
+                        t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+                        document.head.appendChild(t);
+                });
+        </script>
+    </footer>
+
+    <!-- BootstrapからJavaScriptを読み込むコードをコピーして貼り付け -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+  </body>
+</html>

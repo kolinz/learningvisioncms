@@ -1,0 +1,32 @@
+<!-- ベーステンプレートを適用する -->
+{% extends 'base.html' %}
+
+<!-- ヘッダー情報のページタイトルを設定する -->
+{% block title %}職種別学習情報マイページ{% endblock %}
+
+    {% block contents %}
+
+    <!-- ログイン中のユーザーの投稿件数を表示 -->
+    {% if user.is_authenticated %}
+    <br>
+    <div style="text-align:center">
+        <h4>{{user.username}} さんのマイページ</h4>
+        {% if object_list.count == 0 %}
+            <p>{{user.username}} さんの投稿はありません。</p>
+        {% else %}
+            <p>投稿:{{object_list.count}}件</p>
+        {% endif %}
+        <a href="/admin/edu/jobpost/">職種別学習情報を登録</a>
+    </div>
+    <hr>
+    {% endif %}
+
+    <!-- 投稿一覧テンプレートの組み込み -->
+    {% include "model_list.html" %}
+
+    <!-- ページネーションの組み込み -->
+    {% include "pagination.html" %}
+
+    {% endblock %}
+
+

@@ -1,0 +1,43 @@
+<div class="container">
+        {% for record in object_list|slice:":1" %}
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/m">職種別学習情報</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ record.line.title }}</li>
+              </ol>
+        </nav>
+        {% endfor %}
+</div>
+<!-- タイトルとナビゲーションボタン -->
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <!-- カテゴリのタイトルと概要を表示 -->
+        {% for record in object_list|slice:":1" %}
+          <p class="lead">{{ record.line.title }}</p>
+          <p>{{ record.line.summary }}</p>
+        {% endfor %}
+        <!-- 関連業界をすべて表示 -->
+          <p class="lead">関連業界</p>
+          <div style='clear: both;'>
+            {% for record in object_list|slice:":1" %}
+                {% for line in record.line.relation.all %}
+                    <button class="btn btn-outline-primary" onclick="location.href='/line/{{ line.id }}'">
+                    {{ line.title }}
+                    </button>
+                {% endfor %}
+            {% endfor %}
+          </div>
+      <!-- ナビゲーションボタン -->
+        {% if user.is_authenticated  %}
+      <!-- ログイン中のボタン -->
+          <a href="/admin/edu/jobpost/" 
+              class="btn btn-primary my-2">職種別学習情報の登録</a>
+          {% else %}
+        <!-- ログイン状態ではないときのボタン -->
+          <a href="/m" 
+                class="btn btn-info my-3">職種別学習情報</a>
+        {% endif %}
+      </div>    
+    </div>
+</section>

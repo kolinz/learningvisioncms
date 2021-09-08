@@ -1,0 +1,26 @@
+<!-- タイトルとナビゲーションボタン -->
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">学習情報DB</h1>
+        <p class="lead text-muted">学び直し、スキル獲得に向けた、リカレント教育、リスキリング教育情報のまとめ</p>
+        <!-- ナビゲーションボタン -->
+        {% if user.is_authenticated  %}
+        <!-- ログイン中のボタン -->
+          <a href="{% url 'edu:post' %}" 
+              class="btn btn-primary my-2">学習情報を登録</a>
+          <a href="/cat_list" 
+              class="btn btn-secondary my-3">カテゴリ検索</a>
+          <a href="/m" 
+              class="btn btn-info my-3">職種別学習情報はこちら</a>
+        {% else %}
+        <!-- ログイン状態ではないときのボタン -->
+          <a href="/cat_list" 
+              class="btn btn-secondary my-3">カテゴリ検索</a>
+          <a href="/m" 
+              class="btn btn-info my-3">職種別学習情報はこちら</a>
+        {% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
