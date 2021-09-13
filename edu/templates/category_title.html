@@ -31,12 +31,16 @@
         <!-- ナビゲーションボタン -->
         {% if user.is_authenticated  %}
         <!-- ログイン中のボタン -->
-          <a href="{% url 'edu:post' %}" 
+          <a href="{% url 'edu:post' %}"
               class="btn btn-primary my-2">学習情報の登録</a>
+          <a href="/cat_list"
+                class="btn btn-secondary my-3">カテゴリ一覧</a>
         {% else %}
         <!-- ログイン状態ではないときは何も表示しない。 -->
-          <a href="/" 
+          <a href="/"
                 class="btn btn-info my-3">学習情報DB</a>
+          <a href="/cat_list"
+                class="btn btn-secondary my-3">カテゴリ一覧</a>
         {% endif %}
       </div>
     </div>
