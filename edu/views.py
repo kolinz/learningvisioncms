@@ -5,7 +5,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
 # modelsモジュールからモデルEduPostとJobPostをインポート
-from .models import EduPost, JobPost
+from .models import EduPost, JobPost, Category
 # formsモジュールからPhotoPostForm, JobPostFormをインポート
 from .forms import EduPostForm, JobPostForm
 # method_decoratorをインポート
@@ -33,8 +33,8 @@ class CategoryListView(ListView):
     #　cat_list.htmlをレンダリング
     template_name = 'cat_list.html'
 
-    # モデルEduPostのオブジェクト、並び替え。タイトル順
-    queryset = EduPost.objects.order_by('-title')
+    # モデルCategoryのオブジェクト、並び替え。タイトル順
+    queryset = Category.objects.order_by('-title')
     # 1ページに表示するレコードの件数
     paginate_by = 6
 
