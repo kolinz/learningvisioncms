@@ -4,7 +4,7 @@
 {% block title %}学習別カテゴリ一覧{% endblock %}
 
     {% block contents %}
-      
+
     <section class="py-5 text-center container">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -13,17 +13,20 @@
         </nav>
         <div class="row py-lg-5">
         <div class="wrap card-columns">
-            {% for record in object_list %}
+            {% for category in object_list %}
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ record.category.title }}</h5>
-                    <p class="card-text">{{ record.category.summary }}</p>
-                    <a href="/cat/{{ record.category.id }}" class="btn btn-primary">移動する</a>
+                    <h5 class="card-title">{{ category.title }}</h5>
+                    <p class="card-text">{{ category.summary }}</p>
+                    <a href="/cat/{{ category.id }}" class="btn btn-primary">移動する</a>
                 </div>
             </div>
             {% endfor %}
         </div>
         </div>
     </section>
-        
+
+    <!-- ページネーションの組み込み -->
+    {% include "pagination.html" %}
+
     {% endblock %}
