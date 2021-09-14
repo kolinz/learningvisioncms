@@ -13,7 +13,7 @@
 - 8割が「はい」と回答
   - やりたい仕事に関わる知識や資格を身に着ける学習を提示するロードマップが提示され、その後に具体的なキャリアに繋がることが示されれば、勉強意欲が向上する。
   - 働きながら学ぶことについて、最短経路で学び、給与を増やしたいと考えていることがわかりました。
-  - その他詳細な調査結果は、GO UNiTE 2021 で発表します。 GO UNiTE 2021の参加には、[IBM Community Japan](https://www.ibm.com/account/reg/jp-ja/signup?formid=urx-19776&target=https://reg.tools.ibm.com/flow/ibm/icj/ibmevents/login)のメンバー登録(無料)が必要です。
+  - その他詳細な調査結果は、GO UNiTE 2021 (オンライン開催 2021/10/12(火)〜11/5(金)) で発表します。 GO UNiTE 2021の参加には、[IBM Community Japan](https://www.ibm.com/account/reg/jp-ja/signup?formid=urx-19776&target=https://reg.tools.ibm.com/flow/ibm/icj/ibmevents/login)のメンバー登録(無料)が必要です。
 
 ## 実装済みの機能
 - リカレント/リスキリング教育情報 = 学習情報の表示 / 作成 / 削除
