@@ -1,13 +1,13 @@
 # Learning Vision(β)
-デモ環境 https://lvcms.pythonanywhere.com/
+デモ動画 >> https://youtu.be/_lAqK_ftWK4
+
+デモ環境 >> https://lvcms.pythonanywhere.com/
+
 ## 概要
 - Learning Visionは、職種別に必要な学習情報とリカレントおよびリスキリング講座情報のデータベースシステムです。
 
   - 本システムは、2021年9月現在、IBM Community Japan ナレッジモール研究「リカレント教育の機会提供」の一環で開発しています。 
-
-  - デモンストレーション動画 >> https://youtu.be/_lAqK_ftWK4
-
-  - β版についてのアンケートにご協力お願いします。>> 無記名で実施中 >> https://forms.gle/Y1nvoD5wSanvzxHM6
+  - β版についてのアンケート(無記名)にご協力お願いします。>> https://forms.gle/Y1nvoD5wSanvzxHM6
 
 ### 開発にあたり実施した事前調査結果
 - 8割が「はい」と回答
